@@ -5,13 +5,17 @@ const userController = {
     try {
       const users = await db.User.findAll({});
 
-      res.send(users).status(200);
+      res.render('dashboard', { users });
     } catch (err) {
       res.send(err).status(400);
     }
   },
 
-  postUser: async (req, res) => {
+  getAddUser: async (req, res) => {
+    res.render('create');
+  },
+
+  postAddUser: async (req, res) => {
     const { body } = req;
 
     const userBody = {
@@ -21,13 +25,25 @@ const userController = {
     try {
       const user = await db.User.create(userBody);
 
-      res.send(user).status(200);
+      res.status(200).redirect('/users/');
     } catch (err) {
       res.send(err).status(400);
     }
   },
 
-  updateUser: async (req, res) => {
+  getUpdateUser: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const user = await db.User.findOne({ where: { id } });
+
+      res.status(200).render('update', { user });
+    } catch (err) {
+      res.send(err).status(400);
+    }
+  },
+
+  postUpdateUser: async (req, res) => {
     const {
       body,
       params: { id },
@@ -40,7 +56,7 @@ const userController = {
     try {
       const user = await db.User.update(userBody, { where: { id } });
 
-      res.send(user).status(200);
+      res.redirect('/users/');
     } catch (err) {
       res.send(err).status(400);
     }
@@ -52,7 +68,7 @@ const userController = {
     try {
       const user = await db.User.destroy({ where: { id } });
 
-      res.send({ success: 'Delete success' }).status(200);
+      res.redirect('/users').status(200);
     } catch (err) {
       res.send(err).status(400);
     }

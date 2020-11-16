@@ -1,0 +1,38 @@
+<% layout('layout/main') -%>
+<% block('title', 'Dashboard') -%>
+
+<section class="container mt-5">
+  <a href="/users/add" class="btn btn-outline-info btn-sm  my-4" role="button" aria-pressed="true">
+    add post
+  </a>
+</section>
+<table class="table table-striped mb-5">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Age</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <% users.forEach((user) => { %>
+          <tr>
+
+      
+            <td> <%= user.name %></td>
+            <td> <%= user.username %></td>
+            <td> <%= user.email %></td>
+            <td> <%= user.age %></td>
+            <td>
+              <a href="/users/update/<%= user.id %>" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Edit</a>
+              <a href="/users/delete/<%= user.id %>" class="btn btn-outline-danger btn-sm " role="button" aria-pressed="true" onClick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Remove</a>
+            </td>
+          </tr>
+        <% }); %>
+     
+     
+    </tbody>
+  </table>

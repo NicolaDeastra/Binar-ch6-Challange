@@ -1,0 +1,22 @@
+<% layout('layout/main') -%>
+<% block('title', 'Home') -%>
+
+<div class="container home__container">
+  <h1 class="blog-heading">Welcome to Mabar</h1>
+  <h4 class="blog-sub-heading text-muted">here we will have some gamer to play game together</h4>
+</div>
+<h6 class="home__write-btn">List of Gamer</h6>
+<div class="container home__container-post">
+  <div class="row mr-5">
+    <%  users.forEach(function(user){ %>
+      
+      <div class="card col-3 offset-1 mt-5 ">
+        <div class="card-body home__card">
+          <h5 class="card-title"><%=user.username%></h5>
+          <p class="card-text"><%=user.email%></p>
+          <a href="#" class="btn btn-primary home__post-btn">Read more</a>
+        </div>
+      </div>
+      <% }) %>
+  </div>
+</div>
