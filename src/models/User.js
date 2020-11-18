@@ -25,14 +25,33 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
       },
       age: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: true,
       },
     },
     {
+      sequelize,
       timestamps: false,
+      modelName: 'User',
+      tableName: 'User',
     }
   );
+
+  User.associate = (models) => {
+    User.hasOne(models.Bio, {
+      foreignKey: {
+        name: 'userId',
+        allowNull: false,
+      },
+    });
+
+    User.hasMany(models.Histories, {
+      foreignKey: {
+        name: 'userId',
+        allowNull: false,
+      },
+    });
+  };
 
   return User;
 };

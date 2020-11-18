@@ -11,6 +11,23 @@ const userController = {
     }
   },
 
+  getUser: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const user = await db.User.findOne({
+        where: { id },
+        include: [db.Bio, db.Histories],
+      });
+
+      const { Histories, Bio } = user;
+
+      res.render('profile', { user, Histories, Bio });
+    } catch (err) {
+      res.status(400).send({ error: 'user not found' });
+    }
+  },
+
   getAddUser: async (req, res) => {
     res.render('create');
   },

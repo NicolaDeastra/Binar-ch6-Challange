@@ -21,7 +21,7 @@ const loginController = {
         res.send({ error: 'login invalid' });
       }
 
-      res.redirect('/users');
+      res.redirect('/home');
     } catch (err) {
       res.status(400).send(err);
     }

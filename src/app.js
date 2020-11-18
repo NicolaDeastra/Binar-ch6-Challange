@@ -30,7 +30,9 @@ app.use('/login', loginRouter);
 
 app.get('/home', async (req, res) => {
   try {
-    const users = await db.User.findAll({});
+    const users = await db.User.findAll({
+      include: [db.Histories],
+    });
 
     res.render('home', { users });
   } catch (err) {
