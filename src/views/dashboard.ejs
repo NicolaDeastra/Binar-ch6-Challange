@@ -3,7 +3,7 @@
 
 <section class="container mt-5">
   <a href="/users/add" class="btn btn-outline-info btn-sm  my-4" role="button" aria-pressed="true">
-    add post
+    add user
   </a>
 </section>
 <table class="table table-striped mb-5">
@@ -27,6 +27,7 @@
             <td> <%= user.email %></td>
             <td> <%= user.age %></td>
             <td>
+              <a href="/users/addgame/<%= user.id %>" class="btn btn-outline-info btn-sm " role="button" aria-pressed="true">Add Game</a>
               <a href="/users/update/<%= user.id %>" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Edit</a>
               <a href="/users/delete/<%= user.id %>" class="btn btn-outline-danger btn-sm " role="button" aria-pressed="true" onClick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Remove</a>
             </td>

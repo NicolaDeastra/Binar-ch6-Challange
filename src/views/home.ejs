@@ -13,10 +13,15 @@
       <div class="card col-3 offset-1 mt-5 ">
         <div class="card-body home__card">
           <h5 class="card-title">👤  <%=user.username%></h5>
-          <p class="card-text mt-4">Previously played game :</p>
-          <% user.Histories.forEach(history => { %>
-            <p class="card-text text-muted"> 🎮 <%=history.gameName%></p>
+          <p class="card-text mt-4">Most played game :</p>
+          <% if(user.Histories.length > 2) { %>
+            <p class="card-text text-muted"> 🎮 <%=user.Histories[0].gameName%></p>
+            <p class="card-text text-muted"> 🎮 <%=user.Histories[1].gameName%></p>
+          <%} else { %>
+            <% user.Histories.forEach(history => { %>
+              <p class="card-text text-muted"> 🎮 <%=history.gameName%></p>
             <% }) %>
+           <% } %>
           <a href="/users/profile/<%= user.id %>" class="btn btn-primary home__post-btn">Read more</a>
         </div>
       </div>

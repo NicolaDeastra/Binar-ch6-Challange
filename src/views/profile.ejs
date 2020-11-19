@@ -34,51 +34,96 @@
                     <p><%=user.age%></p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Address</label>
+            <% if(Bio) { %>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Address</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p><%=Bio.address%></p>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <p><%=Bio.address%></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Phone Number</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p><%=Bio.phoneNumber%></p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Phone Number</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>School</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p><%=Bio.school%></p>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <p><%=Bio.phoneNumber%></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Steam Level</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p><%=Bio.steamLevel%></p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label>School</label>
+            <%} else { %>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Address</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Bio not found</p>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <p><%=Bio.school%></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Phone Number</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Bio not found</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Steam Level</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>School</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Bio not found</p>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <p><%=Bio.steamLevel%></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Steam Level</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Bio not found</p>
+                    </div>
                 </div>
-            </div>
+            <% } %>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label>🎮 Game History</label>
                 </div>
             </div>
-            <% Histories.forEach(history => { %>
+            <% if(Histories) { %>
+                <% Histories.forEach(history => { %>
+                    <div class="row mb-3">
+                        <div class="col-md-6 text-muted">
+                            <label><%=history.gameName%></label>
+                        </div>
+                        <div class="col-md-6">
+                            <a  href="/users/deleteHistory/<%= history.id %>" class="btn btn-outline-danger btn-sm " role="button" aria-pressed="true" onClick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Remove</a>
+                        </div>
+                    </div>    
+                <% }) %>
+            <%} else { %>
                 <div class="row mb-3">
-                    <div class="col-md-6 text-muted">
-                        <label><%=history.gameName%></label>
+                    <div class="col-md-6 text-muted ">
+                        <h6>History not found</h6>
                     </div>
-                </div>    
-            <% }) %>
-            
+                </div>  
+            <% } %>
         </div>
     </div>
 </div>
