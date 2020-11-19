@@ -28,8 +28,9 @@
             <td> <%= user.age %></td>
             <td>
               <a href="/users/addgame/<%= user.id %>" class="btn btn-outline-info btn-sm " role="button" aria-pressed="true">Add Game</a>
-              <a href="/users/update/<%= user.id %>" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Edit</a>
+              <a href="/users/update/<%= user.id %>" class="btn btn-outline-warning btn-sm " role="button" aria-pressed="true">Edit</a>
               <a href="/users/delete/<%= user.id %>" class="btn btn-outline-danger btn-sm " role="button" aria-pressed="true" onClick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Remove</a>
+              <a href="/users/profile/<%= user.id %>" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Read more</a>
             </td>
           </tr>
         <% }); %>

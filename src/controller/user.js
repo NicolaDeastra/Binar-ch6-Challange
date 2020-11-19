@@ -74,9 +74,11 @@ const userController = {
     const { id } = req.params
 
     try {
-      const user = await db.User.findOne({ where: { id } })
+      const user = await db.User.findOne({ where: { id }, include: [db.Bio] })
 
-      res.status(200).render('update', { user })
+      const { Bio } = user
+
+      res.status(200).render('update', { user, Bio })
     } catch (err) {
       res.send(err).status(400)
     }
@@ -84,16 +86,37 @@ const userController = {
 
   postUpdateUser: async (req, res) => {
     const {
-      body,
+      body: {
+        name,
+        username,
+        email,
+        age,
+        address,
+        phoneNumber,
+        school,
+        steamLevel,
+      },
       params: { id },
     } = req
 
     const userBody = {
-      ...body,
+      name,
+      username,
+      email,
+      age,
+    }
+
+    const bioBody = {
+      address,
+      phoneNumber,
+      school,
+      steamLevel,
     }
 
     try {
       const user = await db.User.update(userBody, { where: { id } })
+
+      const bio = await db.Bio.update(bioBody, { where: { userId: id } })
 
       res.redirect('/users/')
     } catch (err) {
