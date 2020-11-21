@@ -1,11 +1,7 @@
 <% layout('layout/main') -%>
 <% block('title', 'Add') -%>
 
-<form target="/users/addgame/<%= user.id %>"  method="POST" >
-    <div class="form-group col-md-6 offset-md-3">
-        <label for="id">Id</label>
-        <input type="text" name="id" class="form-control" id="id" placeholder="Id" value="<%= user.id %>" readonly>
-    </div>
+<form target="/users/addgame/<%= user.id %>"  class="addGame__form" method="POST" >
     <div class="form-group col-md-6 offset-md-3">
       <label for="gameName">Add game</label>
       <input type="text" name="gameName" class="form-control" id="gameName" placeholder="Game Name"  required>

@@ -165,6 +165,11 @@ label {
   font-size: 1.5rem;
 }
 
+.addGame__form {
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+}
+
 .site-footer {
   background-color: #576de6;
   padding: 45px 0 20px;
